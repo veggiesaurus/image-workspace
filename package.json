@@ -1,20 +1,10 @@
 {
-  "name": "image_viewer_backend",
+  "name": "image-workspace",
+  "private": "true",
   "module": "index.ts",
   "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/pg": "^8.11.10",
-    "drizzle-kit": "^0.28.0",
-    "prettier": "^3.3.3",
-    "tsx": "^4.19.2"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.36.1",
-    "pg": "^8.13.1"
-  }
+  "workspaces": [
+    "packages/*"
+  ],
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }

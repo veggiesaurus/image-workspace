@@ -1,9 +1,8 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
-  dialect: "postgresql", // 'mysql' | 'sqlite' | 'turso'
+  dialect: "postgresql",
   schema: "./src/db/schema.ts",
 });
 
@@ -13,9 +12,10 @@ export async function getDb() {
     casing: "snake_case",
   });
   try {
+    // Proof-of-life check
     await db.execute("select 1");
-  } catch (e) {
-    console.error(e);
+  } catch (err) {
+    console.error(err);
     return undefined;
   }
 
