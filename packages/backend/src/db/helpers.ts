@@ -11,8 +11,8 @@ export const timestamps = {
 export enum RegionType {
   POINT = "point",
   RECTANGLE = "rectangle",
-  POLYGON = "polygon",
   ELLIPSE = "ellipse",
+  POLYGON = "polygon",
 }
 
 export function enumToPgEnum<T extends Record<string, any>>(myEnum: T): [T[keyof T], ...T[keyof T][]] {

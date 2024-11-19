@@ -10,6 +10,6 @@ export class Workspace extends BaseModel {
 
   constructor(dto: WorkspaceRto) {
     super(dto);
-    this.label = dto.label
+    this.label = dto.label;
   }
 }
