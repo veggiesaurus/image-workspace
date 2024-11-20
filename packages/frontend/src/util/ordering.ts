@@ -1,3 +1,5 @@
+import { OrderableItem } from "../models/orderableModel.ts";
+
 export const ORDER_INDEX_START = 1e9;
 export const ORDER_INDEX_INCREMENT = 1e9;
 
@@ -6,7 +8,7 @@ export const ORDER_INDEX_INCREMENT = 1e9;
 const ORDER_INDEX_RANDOM_OFFSET = 0.3333;
 const ORDER_INDEX_RANDOM_RANGE = 0.3333;
 
-export function getNextOrderIndex<T extends { orderIndex: number }>(items: T[]): number {
+export function getNextOrderIndex<T extends OrderableItem>(items: T[]): number {
   if (!items?.length) {
     return ORDER_INDEX_START;
   }
@@ -14,12 +16,24 @@ export function getNextOrderIndex<T extends { orderIndex: number }>(items: T[]):
   return items.reduce((max, item) => Math.max(max, item.orderIndex), ORDER_INDEX_START) + ORDER_INDEX_INCREMENT;
 }
 
-export function sortByOrderIndex<T extends { orderIndex: number }>(items: T[]): T[] {
+export function sortByOrderIndex<T extends OrderableItem>(items: T[]): T[] {
   return items.slice().sort((a, b) => a.orderIndex - b.orderIndex);
 }
 
-// Needs some unit tests!
-export function calculateNewOrderIndex<T extends { orderIndex: number }>(items: T[], targetIndex: number): number {
+export function calculateNewOrderIndex<T extends OrderableItem>(items: T[], target: T | number | string): number {
+  let targetIndex;
+  if (typeof target === "number") {
+    targetIndex = target;
+  } else if (typeof target === "string") {
+    targetIndex = items.findIndex(item => item.id === target);
+  } else {
+    targetIndex = items.indexOf(target);
+  }
+
+  if (targetIndex === -1) {
+    return NaN;
+  }
+
   const existingIndices = items.map((item) => item.orderIndex);
   const minIndex = Math.min(...existingIndices);
   const maxIndex = Math.max(...existingIndices);

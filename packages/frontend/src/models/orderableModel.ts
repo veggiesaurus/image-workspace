@@ -1,8 +1,12 @@
 import { observable } from "mobx";
 import { BaseModel, BaseModelRto } from "./baseModel.ts";
 
-export interface OrderableModelRto extends BaseModelRto {
+export interface OrderableItem {
+  id: string;
   orderIndex: number;
+}
+
+export interface OrderableModelRto extends BaseModelRto, OrderableItem {
 }
 
 export class OrderableModel extends BaseModel {
