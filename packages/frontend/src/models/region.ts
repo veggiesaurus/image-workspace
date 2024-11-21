@@ -1,26 +1,12 @@
-import { Image } from "./image.ts";
+import { Image } from "./image";
 import { observable } from "mobx";
-import { ObjectPool } from "./objectPool.ts";
-import { OrderableModel, OrderableModelRto } from "./orderableModel.ts";
-import { Point2d } from "../util/point2d.ts";
-import {v7 as uuidv7} from "uuid";
-import { User } from "./user.ts";
-import { getNextOrderValue } from "../util/ordering.ts";
-
-export enum RegionType {
-  POINT = "point",
-  RECTANGLE = "rectangle",
-  ELLIPSE = "ellipse",
-  POLYGON = "polygon",
-}
-
-
-export interface RegionRto extends OrderableModelRto {
-  label: string;
-  imageId: string;
-  regionType: RegionType;
-  controlPoints: Point2d[];
-}
+import { ObjectPool } from "./objectPool";
+import { OrderableModel } from "./orderableModel";
+import { v7 as uuidv7 } from "uuid";
+import { User } from "./user";
+import { getNextOrderValue } from "shared-lib/util";
+import { Point2d, RegionType } from "shared-lib/types";
+import { RegionRto } from "shared-lib/rto";
 
 
 export class Region extends OrderableModel implements RegionRto {
@@ -47,6 +33,19 @@ export class Region extends OrderableModel implements RegionRto {
       imageId: image.id,
       regionType: RegionType.POINT,
       controlPoints: [point],
+    });
+  }
+
+  static CreateRectRegion(image: Image, user: User, point: Point2d, width: number, height: number) {
+    return new Region({
+      id: uuidv7(),
+      label: "new rectangle region",
+      createdAt: new Date(),
+      createdById: user.id,
+      orderValue: getNextOrderValue(image.regions),
+      imageId: image.id,
+      regionType: RegionType.RECTANGLE,
+      controlPoints: [point, { x: width, y: height }],
     });
   }
 

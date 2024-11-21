@@ -1,5 +1,5 @@
 import { getDb } from "./db";
-import { usersTable } from "./db/schema.ts";
+import { usersTable } from "./db/schema";
 
 // Initialise the database connection
 process.stdout.write("Connecting to DB...");

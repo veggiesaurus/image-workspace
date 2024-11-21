@@ -1,15 +1,12 @@
 import { observable } from "mobx";
-import { BaseModel, BaseModelRto } from "./baseModel.ts";
-import { OrderableItem } from "image-workspace-shared";
+import { BaseModel } from "./baseModel";
+import { OrderableRto } from "shared-lib/rto";
 
-
-export interface OrderableModelRto extends BaseModelRto, OrderableItem {
-}
 
 export class OrderableModel extends BaseModel {
   @observable accessor orderValue: number;
 
-  constructor(dto: OrderableModelRto) {
+  constructor(dto: OrderableRto) {
     super(dto);
     this.orderValue = dto.orderValue;
   }

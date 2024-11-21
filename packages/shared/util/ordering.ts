@@ -1,4 +1,4 @@
-import { maxInRange, minMaxArray } from "./math.ts";
+import { maxInRange, minMaxArray } from "./math";
 
 export const ORDER_INDEX_START = 0;
 export const ORDER_INDEX_INCREMENT = 1;
@@ -57,7 +57,7 @@ export function calculateNewOrderValue<T extends OrderableItem>(items: T[], targ
   const lowerBound = maxInRange(indices, upperBound);
 
   const range = upperBound - lowerBound;
-  console.log(range);
+  // console.log(range);
   const offset = range * ORDER_INDEX_RANDOM_OFFSET;
   const random = Math.random() * range * ORDER_INDEX_RANDOM_RANGE;
   return lowerBound + offset + random;

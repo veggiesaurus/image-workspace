@@ -1,16 +1,9 @@
 import { computed, observable } from "mobx";
-import { User } from "./user.ts";
-import { ObjectPool } from "./objectPool.ts";
+import { User } from "./user";
+import { ObjectPool } from "./objectPool";
+import { BaseRto } from "shared-lib/rto";
 
-export interface BaseModelRto {
-  id: string;
-  createdAt: Date;
-  updatedAt?: Date;
-  createdById: string;
-  updatedById?: string;
-}
-
-export class BaseModel implements BaseModelRto {
+export class BaseModel implements BaseRto {
   readonly id!: string;
 
   readonly createdAt: Date;
@@ -19,7 +12,7 @@ export class BaseModel implements BaseModelRto {
   @observable updatedAt: Date | undefined;
   @observable updatedById: string | undefined;
 
-  constructor(dto: BaseModelRto) {
+  constructor(dto: BaseRto) {
     this.id = dto.id;
     this.createdAt = dto.createdAt;
     this.updatedAt = dto.updatedAt;

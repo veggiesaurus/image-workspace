@@ -1,12 +1,8 @@
 import { action, computed, observable } from "mobx";
-import { getListFromPool, ObjectPool } from "./objectPool.ts";
-import { Region } from "./region.ts";
-import { OrderableModel, OrderableModelRto } from "./orderableModel.ts";
-
-export interface ImageRto extends OrderableModelRto {
-  label: string;
-  spatialReferenceId?: string;
-}
+import { getListFromPool, ObjectPool } from "./objectPool";
+import { Region } from "./region";
+import { OrderableModel } from "./orderableModel";
+import { ImageRto } from "shared-lib/rto/index";
 
 
 export class Image extends OrderableModel implements ImageRto {

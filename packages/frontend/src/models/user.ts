@@ -1,14 +1,8 @@
 import { computed, observable } from "mobx";
-import { getListFromPool } from "./objectPool.ts";
-import { Image } from "./image.ts";
-import { Workspace } from "./workspace.ts";
-
-export interface UserDto {
-  id: string;
-  name: string;
-  email?: string;
-}
-
+import { getListFromPool } from "./objectPool";
+import { Image } from "./image";
+import { Workspace } from "./workspace";
+import { UserDto } from "shared-lib/rto";
 
 export class User implements UserDto {
   readonly id: string;

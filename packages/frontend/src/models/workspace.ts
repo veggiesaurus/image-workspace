@@ -1,9 +1,6 @@
-import { BaseModel, BaseModelRto } from "./baseModel.ts";
+import { WorkspaceRto } from "shared-lib/rto";
+import { BaseModel } from "./baseModel";
 import { observable } from "mobx";
-
-export interface WorkspaceRto extends BaseModelRto {
-  label: string;
-}
 
 export class Workspace extends BaseModel {
   @observable accessor label: string;

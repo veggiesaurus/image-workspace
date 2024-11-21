@@ -1,7 +1,7 @@
-import { User } from "./user.ts";
-import { Workspace } from "./workspace.ts";
-import { Image } from "./image.ts";
-import { Region } from "./region.ts";
+import { User } from "./user";
+import { Workspace } from "./workspace";
+import { Image } from "./image";
+import { Region } from "./region";
 import { observable } from "mobx";
 
 export const ObjectPool = {

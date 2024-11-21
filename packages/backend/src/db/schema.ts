@@ -1,6 +1,7 @@
 import { type AnyPgColumn, integer, pgEnum, pgTable, text, uuid } from "drizzle-orm/pg-core";
-import { enumToPgEnum, orderable, RegionType, timestamps, timestampz } from "./helpers.ts";
+import { enumToPgEnum, orderable, timestamps, timestampz } from "./helpers";
 import { point } from "drizzle-orm/pg-core/columns/point";
+import { RegionType } from "shared-lib/types";
 
 export const usersTable = pgTable("users", {
   id: uuid().primaryKey().defaultRandom(),
