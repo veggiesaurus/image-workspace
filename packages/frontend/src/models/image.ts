@@ -12,13 +12,13 @@ export interface ImageRto extends OrderableModelRto {
 export class Image extends OrderableModel implements ImageRto {
   @observable accessor label: string;
   @observable accessor spatialReferenceId: string | undefined;
-  @observable accessor orderIndex: number;
+  @observable accessor orderValue: number;
 
   constructor(dto: ImageRto) {
     super(dto);
     this.label = dto.label;
     this.spatialReferenceId = dto.spatialReferenceId;
-    this.orderIndex = dto.orderIndex;
+    this.orderValue = dto.orderValue;
   }
 
   // Updates the spatial reference to a given image or image ID
@@ -61,6 +61,6 @@ export class Image extends OrderableModel implements ImageRto {
   }
 
   @computed get regions() {
-    return getListFromPool<Region>("regions", "imageId", this.id).sort((a, b) => a.orderIndex - b.orderIndex);
+    return getListFromPool<Region>("regions", "imageId", this.id).sort((a, b) => a.orderValue - b.orderValue);
   }
 }

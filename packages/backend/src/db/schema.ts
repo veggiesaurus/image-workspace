@@ -1,5 +1,5 @@
 import { type AnyPgColumn, integer, pgEnum, pgTable, text, uuid } from "drizzle-orm/pg-core";
-import { enumToPgEnum, RegionType, timestamps, timestampz } from "./helpers.ts";
+import { enumToPgEnum, orderable, RegionType, timestamps, timestampz } from "./helpers.ts";
 import { point } from "drizzle-orm/pg-core/columns/point";
 
 export const usersTable = pgTable("users", {
@@ -33,6 +33,7 @@ export const filesTable = pgTable("files", {
   workspaceId: uuid()
     .notNull()
     .references(() => workspacesTable.id, { onDelete: "cascade" }),
+  ...orderable,
   ...timestamps,
   ...owners,
 });
@@ -49,6 +50,7 @@ export const regionsTable = pgTable("regions", {
   workspaceId: uuid()
     .notNull()
     .references(() => workspacesTable.id, { onDelete: "cascade" }),
+  ...orderable,
   ...timestamps,
   ...owners,
 });

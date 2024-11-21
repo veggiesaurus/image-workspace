@@ -1,4 +1,4 @@
-import { pgEnum, timestamp } from "drizzle-orm/pg-core";
+import { real, timestamp } from "drizzle-orm/pg-core";
 
 export const timestampz = () => timestamp({ withTimezone: true });
 
@@ -7,6 +7,10 @@ export const timestamps = {
   createdAt: timestampz().defaultNow().notNull(),
   deletedAt: timestampz(),
 };
+
+export const orderable = {
+  orderValue: real().notNull().default(0),
+}
 
 export enum RegionType {
   POINT = "point",

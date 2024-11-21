@@ -1,0 +1,12 @@
+{
+  "name": "shared-lib",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "uuid": "^11.0.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "mitata": "^1.0.14"
+  }
+}

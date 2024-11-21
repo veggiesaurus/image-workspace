@@ -5,7 +5,7 @@ import { OrderableModel, OrderableModelRto } from "./orderableModel.ts";
 import { Point2d } from "../util/point2d.ts";
 import {v7 as uuidv7} from "uuid";
 import { User } from "./user.ts";
-import { getNextOrderIndex } from "../util/ordering.ts";
+import { getNextOrderValue } from "../util/ordering.ts";
 
 export enum RegionType {
   POINT = "point",
@@ -43,7 +43,7 @@ export class Region extends OrderableModel implements RegionRto {
       label: "new point region",
       createdAt: new Date(),
       createdById: user.id,
-      orderIndex: getNextOrderIndex(image.regions),
+      orderValue: getNextOrderValue(image.regions),
       imageId: image.id,
       regionType: RegionType.POINT,
       controlPoints: [point],
